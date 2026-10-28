@@ -2,5 +2,7 @@
   "name": "Heaven's Oath",
   "description": "From the ashes of the clouds, a saint is born. A cinematic East Asian fantasy adventure game landing page through sacred mountains, forgotten gods, and the shattered realms of Heaven.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }
