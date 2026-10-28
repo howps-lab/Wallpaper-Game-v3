@@ -39,7 +39,7 @@ export default function HeroCharacter({
                 srcSet="/images/hero-warrior-mobile.png"
               />
               <img
-                src="/images/hero-warrior.png"
+                src="/images/hero-warrior.gif"
                 alt="Celestial Immortal Warrior looking out at the sacred mountain peaks"
                 onLoad={() => setIsLoaded(true)}
                 onError={() => setImageError(true)}
