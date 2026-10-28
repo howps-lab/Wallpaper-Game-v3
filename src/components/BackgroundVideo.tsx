@@ -53,7 +53,7 @@ export default function BackgroundVideo({ opacity = 1 }: BackgroundVideoProps) {
       {/* Full-screen background video covering the entire viewport edge-to-edge */}
       <video
         ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover object-center"
+        className="absolute inset-0 w-full h-full object-cover object-[5%_center] sm:object-[15%_center] md:object-center"
         autoPlay
         muted
         loop

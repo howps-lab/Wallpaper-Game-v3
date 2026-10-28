@@ -18,7 +18,7 @@ export default function HeroCharacter({
 
   return (
     <div
-      className="absolute inset-x-0 bottom-0 flex justify-end items-end pointer-events-none select-none z-20 overflow-hidden h-[75vh] md:h-[84vh] lg:h-[88vh] pr-2 sm:pr-6 md:pr-10 lg:pr-14 xl:pr-16"
+      className="absolute inset-x-0 bottom-0 flex justify-end items-end pointer-events-none select-none z-20 overflow-hidden h-[60vh] md:h-[84vh] lg:h-[88vh] pr-0 sm:pr-4 md:pr-10 lg:pr-14 xl:pr-16 -mr-2 sm:mr-0"
       aria-hidden="true"
     >
       <div
@@ -32,7 +32,7 @@ export default function HeroCharacter({
         {/* Hero Figure Container with Natural Breathing and Wind Motion */}
         <div className="relative animate-float-breathing">
           <div className="relative animate-robe-sway">
-            {/* Desktop Hero Image */}
+            {/* Desktop and Mobile Responsive Hero Images */}
             <picture>
               <source
                 media="(max-width: 767px)"
@@ -43,7 +43,7 @@ export default function HeroCharacter({
                 alt="Celestial Immortal Warrior looking out at the sacred mountain peaks"
                 onLoad={() => setIsLoaded(true)}
                 onError={() => setImageError(true)}
-                className={`max-h-[70vh] md:max-h-[80vh] lg:max-h-[84vh] w-auto object-contain object-bottom drop-shadow-[0_15px_35px_rgba(0,0,0,0.92)] transition-opacity duration-1000 ${
+                className={`max-h-[56vh] md:max-h-[80vh] lg:max-h-[84vh] w-auto object-contain object-bottom drop-shadow-[0_15px_35px_rgba(0,0,0,0.92)] transition-opacity duration-1000 ${
                   isLoaded ? 'opacity-100' : 'opacity-0'
                 }`}
               />

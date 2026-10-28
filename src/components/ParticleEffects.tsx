@@ -12,7 +12,6 @@ interface Particle {
   speedX: number;
   opacity: number;
   maxOpacity: number;
-  colorType: 'gold' | 'ivory' | 'crimson' | 'ash';
   pulseSpeed: number;
   pulsePhase: number;
 }
@@ -49,37 +48,19 @@ export default function ParticleEffects({ className = '' }: ParticleEffectsProps
 
     // Adapt particle count for performance (mobile vs desktop)
     const isMobile = width < 768;
-    const particleCount = isMobile ? 32 : 75;
+    const particleCount = isMobile ? 36 : 80;
 
     const particles: Particle[] = [];
 
-    const colorPalettes = {
-      gold: '223, 183, 108', // Antique gold
-      ivory: '245, 240, 228', // Moonlit ivory
-      crimson: '210, 60, 50', // Restrained sacred crimson spark
-      ash: '180, 175, 165', // Celestial ash mote
-    };
-
-    const types: ('gold' | 'ivory' | 'crimson' | 'ash')[] = [
-      'gold',
-      'gold',
-      'ivory',
-      'ivory',
-      'ash',
-      'crimson',
-    ];
-
     for (let i = 0; i < particleCount; i++) {
-      const type = types[Math.floor(Math.random() * types.length)];
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        size: Math.random() * (type === 'crimson' ? 2.2 : 2.8) + 0.8,
+        size: Math.random() * 2.2 + 0.8,
         speedY: -(Math.random() * 0.45 + 0.15), // Drifts gently upwards
-        speedX: Math.sin(Math.random() * Math.PI * 2) * 0.25 + 0.1, // Drifts slightly right
-        opacity: Math.random() * 0.6 + 0.1,
-        maxOpacity: Math.random() * 0.5 + 0.35,
-        colorType: type,
+        speedX: Math.sin(Math.random() * Math.PI * 2) * 0.2 + 0.1, // Drifts slightly right
+        opacity: Math.random() * 0.6 + 0.15,
+        maxOpacity: Math.random() * 0.55 + 0.35,
         pulseSpeed: Math.random() * 0.02 + 0.01,
         pulsePhase: Math.random() * Math.PI * 2,
       });
@@ -109,13 +90,13 @@ export default function ParticleEffects({ className = '' }: ParticleEffectsProps
 
         const currentOpacity =
           p.maxOpacity * (0.6 + 0.4 * Math.sin(p.pulsePhase));
-        const rgb = colorPalettes[p.colorType];
 
+        // 100% pure white celestial particles
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${rgb}, ${Math.max(0, currentOpacity)})`;
-        ctx.shadowColor = `rgba(${rgb}, 0.6)`;
-        ctx.shadowBlur = p.size * 3;
+        ctx.fillStyle = `rgba(255, 255, 255, ${Math.max(0, currentOpacity)})`;
+        ctx.shadowColor = `rgba(255, 255, 255, 0.8)`;
+        ctx.shadowBlur = p.size * 2.5;
         ctx.fill();
       }
 
@@ -132,10 +113,10 @@ export default function ParticleEffects({ className = '' }: ParticleEffectsProps
 
   return (
     <div
-      className="fixed inset-0 pointer-events-none overflow-hidden z-10 select-none"
+      className={`fixed inset-0 pointer-events-none overflow-hidden z-10 select-none ${className}`}
       aria-hidden="true"
     >
-      {/* Canvas for subtle Celestial Ash, Dust, and Gold Sparks */}
+      {/* Pure White Celestial Particles Canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
     </div>
   );

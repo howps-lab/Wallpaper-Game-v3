@@ -3,8 +3,8 @@ import { motion } from 'motion/react';
 export default function GameTitle() {
   return (
     <div className="relative z-30 flex flex-col items-center justify-start text-center px-4 pt-16 sm:pt-18 md:pt-20 pb-4 pointer-events-none select-none max-w-4xl mx-auto">
-      {/* Localized Subtle Halo for Crystal-Clear Text Definition Against Misty Mountain Fog */}
-      <div className="absolute inset-0 -inset-x-20 -inset-y-6 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.52)_0%,rgba(0,0,0,0.22)_50%,transparent_75%)] pointer-events-none blur-2xl -z-10" />
+      {/* Localized Subtle Halo for Soft Text Contrast */}
+      <div className="absolute inset-0 -inset-x-20 -inset-y-6 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.32)_0%,rgba(0,0,0,0.13)_50%,transparent_75%)] pointer-events-none blur-2xl -z-10" />
 
       {/* Chinese Mythological Seal & Inscription */}
       <motion.div
