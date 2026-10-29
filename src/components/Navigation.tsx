@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import SoundToggle from './SoundToggle';
 
 interface NavigationProps {
   onNavigate: (sectionId: string) => void;
@@ -62,10 +61,8 @@ export default function Navigation({ onNavigate, onEnterWorld }: NavigationProps
           ))}
         </nav>
 
-        {/* Zone 3: Actions (SoundToggle + Primary CTA + Mobile Hamburger) */}
+        {/* Zone 3: Actions (Primary CTA + Mobile Hamburger) */}
         <div className="flex items-center gap-3 shrink-0">
-          <SoundToggle />
-
           <button
             onClick={onEnterWorld}
             className="hidden sm:inline-flex items-center gap-2 px-4 py-2 border border-[#d4af37]/60 hover:border-[#f5df9e] bg-[#12110c]/80 hover:bg-[#1f1b12] text-[#f5df9e] hover:text-white text-xs font-display tracking-[0.2em] uppercase font-semibold transition-all duration-300 rounded-sm cursor-pointer whitespace-nowrap shrink-0 gold-subtle-glow"
