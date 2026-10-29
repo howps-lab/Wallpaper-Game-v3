@@ -10,9 +10,8 @@ export default function HeroCharacter({
   isParallaxActive = true,
 }: HeroCharacterProps) {
   const [imageError, setImageError] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
 
-  // Foreground subject moves in slight opposition to background for depth perception
+  // Subtle foreground parallax movement
   const parallaxX = isParallaxActive ? mouseOffset.x * 22 : 0;
   const parallaxY = isParallaxActive ? mouseOffset.y * 12 : 0;
 
@@ -27,39 +26,26 @@ export default function HeroCharacter({
           transform: `translate3d(${parallaxX}px, ${parallaxY}px, 0)`,
         }}
       >
+        {/* Hero Figure in Its Purest Original Form: No Overlays, No Filters, No Artificial Shadows */}
+        <picture>
+          <source
+            media="(max-width: 767px)"
+            srcSet="/images/hero-warrior-mobile.webp"
+          />
+          <img
+            src="/images/hero-warrior.webp"
+            alt="Celestial Immortal Warrior looking out at the sacred mountain peaks"
+            onError={() => setImageError(true)}
+            className="max-h-[56vh] md:max-h-[80vh] lg:max-h-[84vh] w-auto object-contain object-bottom select-none"
+          />
+        </picture>
 
-
-        {/* Hero Figure Container with Natural Breathing and Wind Motion */}
-        <div className="relative animate-float-breathing">
-          <div className="relative animate-robe-sway">
-            {/* Desktop and Mobile Responsive Hero Images */}
-            <picture>
-              <source
-                media="(max-width: 767px)"
-                srcSet="/images/hero-warrior.webp"
-              />
-              <img
-                src="/images/hero-warrior.webp"
-                alt="Celestial Immortal Warrior looking out at the sacred mountain peaks"
-                onLoad={() => setIsLoaded(true)}
-                onError={() => setImageError(true)}
-                className={`max-h-[56vh] md:max-h-[80vh] lg:max-h-[84vh] w-auto object-contain object-bottom drop-shadow-[0_15px_35px_rgba(0,0,0,0.92)] transition-opacity duration-1000 ${
-                  isLoaded ? 'opacity-100' : 'opacity-0'
-                }`}
-              />
-            </picture>
-
-            {/* In case of fallback or before image load, styled silhouette */}
-            {imageError && (
-              <div className="w-[320px] h-[580px] flex items-end justify-center">
-                <div className="w-48 h-96 bg-gradient-to-t from-black via-zinc-900 to-transparent rounded-t-full opacity-80 blur-xs" />
-              </div>
-            )}
+        {/* Fallback silhouette if image fails to load */}
+        {imageError && (
+          <div className="w-[320px] h-[580px] flex items-end justify-center">
+            <div className="w-48 h-96 bg-gradient-to-t from-black via-zinc-900 to-transparent rounded-t-full opacity-80 blur-xs" />
           </div>
-        </div>
-
-        {/* Ambient Mist Grounding the Rock Base into the Viewport Edge */}
-        <div className="absolute -bottom-8 inset-x-[-20%] h-36 bg-gradient-to-t from-[#06070a] via-[#06070a]/80 to-transparent blur-md pointer-events-none" />
+        )}
       </div>
     </div>
   );

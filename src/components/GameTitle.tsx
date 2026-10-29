@@ -17,12 +17,12 @@ export default function GameTitle() {
         <span className="h-[1.5px] w-8 md:w-16 bg-gradient-to-l from-transparent via-[#ffd700] to-[#ffd700] drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]" />
       </motion.div>
 
-      {/* Main Title: Heaven’s Oath in Gokure Japan Demo font, solid black color (reduced 20%) */}
+      {/* Main Title: Heaven’s Oath in Gokure Japan Demo font, restored to original gold color with size and composition retained */}
       <motion.h1
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.3, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-        className="font-title text-lg sm:text-2xl md:text-3xl lg:text-4xl tracking-[0.05em] text-balance text-black drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)] leading-tight select-none"
+        className="font-title text-lg sm:text-2xl md:text-3xl lg:text-4xl tracking-[0.05em] text-balance gold-text-gradient title-defined leading-tight select-none"
       >
         Heaven’s Oath
       </motion.h1>
@@ -32,7 +32,7 @@ export default function GameTitle() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.3, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        className="font-body italic text-sm sm:text-base md:text-lg text-[#1f2024] font-semibold tracking-wide mt-1.5 max-w-xl text-balance drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)]"
+        className="font-body italic text-sm sm:text-base md:text-lg text-[#fff9ea] font-medium tracking-wide mt-1.5 max-w-xl text-balance subtitle-defined"
       >
         From the ashes of the clouds, a saint is born.
       </motion.p>
