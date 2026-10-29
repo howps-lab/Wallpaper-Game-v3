@@ -36,10 +36,10 @@ export default function HeroCharacter({
             <picture>
               <source
                 media="(max-width: 767px)"
-                srcSet="/images/hero-warrior-0000.webp"
+                srcSet="/images/hero-warrior.webp"
               />
               <img
-                src="/images/hero-warrior-0000.webp"
+                src="/images/hero-warrior.webp"
                 alt="Celestial Immortal Warrior looking out at the sacred mountain peaks"
                 onLoad={() => setIsLoaded(true)}
                 onError={() => setImageError(true)}
