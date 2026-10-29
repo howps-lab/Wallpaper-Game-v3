@@ -36,7 +36,7 @@ export default function HeroCharacter({
             <picture>
               <source
                 media="(max-width: 767px)"
-                srcSet="/images/hero-warrior.webp"
+                srcSet="/images/hero-warrior-0000.webp"
               />
               <img
                 src="/images/hero-warrior-0000.webp"
