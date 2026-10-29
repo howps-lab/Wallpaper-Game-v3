@@ -1,7 +1,16 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Gokure Japan Demo';
+  src: url('/fonts/GokureJapanDemo.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
+    --font-title: 'Gokure Japan Demo', 'Cinzel', serif;
     --font-display: 'Cinzel', serif;
     --font-body: 'Cormorant Garamond', Georgia, serif;
     --font-chinese: 'Noto Serif SC', serif;
@@ -22,6 +31,10 @@
 }
 
 /* Custom Typography & Utility Classes */
+.font-title {
+  font-family: 'Gokure Japan Demo', 'Cinzel', serif;
+}
+
 .font-display {
   font-family: 'Cinzel', serif;
 }
@@ -159,17 +172,40 @@
   }
 }
 
-/* Custom Scrollbar for Lore and Modals */
-::-webkit-scrollbar {
-  width: 6px;
+/* Scrollbar Management: Completely hidden on Mobile and Tablet (< 1025px) */
+@media (max-width: 1024px) {
+  html,
+  body,
+  #root,
+  * {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar,
+  #root::-webkit-scrollbar,
+  *::-webkit-scrollbar {
+    display: none !important;
+    width: 0px !important;
+    height: 0px !important;
+    background: transparent !important;
+  }
 }
-::-webkit-scrollbar-track {
-  background: #090a0d;
-}
-::-webkit-scrollbar-thumb {
-  background: #2a251e;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #57462d;
+
+/* Custom Scrollbar for Desktop Only (>= 1025px) */
+@media (min-width: 1025px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #090a0d;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2a251e;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #57462d;
+  }
 }
