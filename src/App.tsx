@@ -9,6 +9,7 @@ import HeroCharacter from './components/HeroCharacter';
 import ParticleEffects from './components/ParticleEffects';
 import Navigation from './components/Navigation';
 import GameTitle from './components/GameTitle';
+import CalligraphyFocus from './components/CalligraphyFocus';
 import StorySection from './components/StorySection';
 import RealmsSection, { Realm } from './components/RealmsSection';
 import CelestialOathSection from './components/CelestialOathSection';
@@ -70,6 +71,9 @@ export default function App() {
       <main className="relative z-20 min-h-screen flex flex-col justify-between overflow-hidden">
         {/* Game Title & Official Subtitle */}
         <GameTitle />
+
+        {/* Central Animating Calligraphy Focus on top of Background Video */}
+        <CalligraphyFocus />
 
         {/* Independent Foreground Hero Warrior Component */}
         <HeroCharacter mouseOffset={mouseOffset} />
