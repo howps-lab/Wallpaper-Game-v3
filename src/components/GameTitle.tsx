@@ -25,9 +25,9 @@ export default function GameTitle() {
         className="flex justify-center items-center"
       >
         <img
-          src="/assets/aistudio/main_title_0b0a0576.png"
+          src="/images/main-title.png"
           alt="Heaven's Oath"
-          className="w-48 sm:w-64 md:w-80 lg:w-[22rem] max-w-[85vw] h-auto object-contain select-none drop-shadow-[0_1px_2px_rgba(255,255,255,0.45)]"
+          className="w-52 sm:w-68 md:w-84 lg:w-[23rem] max-w-[88vw] h-auto object-contain select-none"
         />
       </motion.h1>
     </div>
