@@ -20,6 +20,12 @@ const HEROES = [
     src: '/images/heroine-warrior.webp',
     alt: 'Celestial Heroine with divine sword and flowing robes looking out at the sacred mountain peaks',
   },
+  {
+    id: 'heroine-mage',
+    name: 'Celestial Azure Sorceress',
+    src: '/assets/aistudio/heroine-mage_4714f533.webp',
+    alt: 'Celestial Azure Sorceress channeling divine astral energy upon the sacred summit',
+  },
 ];
 
 export default function HeroCharacter({
@@ -29,7 +35,7 @@ export default function HeroCharacter({
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
   const [imageError, setImageError] = useState(false);
 
-  // Preload both hero assets for instantaneous, seamless switching
+  // Preload all hero assets for instantaneous, seamless switching
   useEffect(() => {
     HEROES.forEach((hero) => {
       const img = new Image();
