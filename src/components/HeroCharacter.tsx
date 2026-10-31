@@ -26,6 +26,12 @@ const HEROES = [
     src: '/assets/aistudio/heroine-mage_4714f533.webp',
     alt: 'Celestial Azure Sorceress channeling divine astral energy upon the sacred summit',
   },
+  {
+    id: 'heavenly-mage',
+    name: 'Heavenly Crimson Sorceress',
+    src: '/assets/aistudio/heavenly-mage_4e03b8f3.webp',
+    alt: 'Heavenly Crimson Sorceress channeling glowing celestial orb on the sacred summit',
+  },
 ];
 
 export default function HeroCharacter({
