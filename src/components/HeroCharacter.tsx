@@ -17,7 +17,7 @@ const HEROES = [
   {
     id: 'heroine-celestial',
     name: 'Celestial Heroine',
-    src: '/assets/aistudio/heroine-warrior_cdd0ad3c.webp',
+    src: '/images/heroine-warrior.webp',
     alt: 'Celestial Heroine with divine sword and flowing robes looking out at the sacred mountain peaks',
   },
 ];
