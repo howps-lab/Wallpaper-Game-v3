@@ -23,7 +23,7 @@ const HEROES = [
   {
     id: 'dark-mage',
     name: 'Shadow Crimson Mage',
-    src: '/assets/aistudio/dark-mage_c7ab7cdc.webp',
+    src: '/images/dark-mage.webp',
     alt: 'Shadow Crimson Mage with hooded dark robes and fiery staff upon the sacred summit',
   },
   {
