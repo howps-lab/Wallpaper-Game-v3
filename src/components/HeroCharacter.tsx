@@ -27,10 +27,10 @@ const HEROES = [
     alt: 'Shadow Crimson Mage with hooded dark robes and fiery staff upon the sacred summit',
   },
   {
-    id: 'heavenly-mage',
-    name: 'Heavenly Crimson Sorceress',
-    src: '/assets/aistudio/heavenly-mage_4e03b8f3.webp',
-    alt: 'Heavenly Crimson Sorceress channeling glowing celestial orb on the sacred summit',
+    id: 'monk-warrior',
+    name: 'Dragon Crest Monk Warrior',
+    src: '/assets/aistudio/monk-warrior_0b44d87c.webp',
+    alt: 'Dragon Crest Monk Warrior standing victorious upon the sacred summit with flowing red sash',
   },
 ];
 
