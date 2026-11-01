@@ -32,6 +32,12 @@ const HEROES = [
     src: '/images/monk-warrior.webp',
     alt: 'Dragon Crest Monk Warrior standing victorious upon the sacred summit with flowing red sash',
   },
+  {
+    id: 'blade-warrior',
+    name: 'Blazing Sun Blade Master',
+    src: '/assets/aistudio/blade-warrior_aca6015b.webp',
+    alt: 'Blazing Sun Blade Master wielding fiery celestial blade standing atop sacred wind rock summit',
+  },
 ];
 
 export default function HeroCharacter({
@@ -101,7 +107,7 @@ export default function HeroCharacter({
                 src={currentHero.src}
                 alt={currentHero.alt}
                 onError={() => setImageError(true)}
-                className="max-h-[56vh] md:max-h-[80vh] lg:max-h-[84vh] w-auto object-contain object-bottom select-none"
+                className="max-h-[56vh] md:max-h-[80vh] lg:max-h-[84vh] w-auto max-w-[90vw] md:max-w-[75vw] lg:max-w-[65vw] object-contain object-bottom select-none"
               />
             </picture>
           </motion.div>
