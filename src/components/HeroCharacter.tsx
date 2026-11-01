@@ -21,10 +21,10 @@ const HEROES = [
     alt: 'Celestial Heroine with divine sword and flowing robes looking out at the sacred mountain peaks',
   },
   {
-    id: 'heroine-mage',
-    name: 'Celestial Azure Sorceress',
-    src: '/assets/aistudio/heroine-mage_4714f533.webp',
-    alt: 'Celestial Azure Sorceress channeling divine astral energy upon the sacred summit',
+    id: 'dark-mage',
+    name: 'Shadow Crimson Mage',
+    src: '/assets/aistudio/dark-mage_c7ab7cdc.webp',
+    alt: 'Shadow Crimson Mage with hooded dark robes and fiery staff upon the sacred summit',
   },
   {
     id: 'heavenly-mage',
