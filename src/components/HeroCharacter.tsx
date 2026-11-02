@@ -38,6 +38,12 @@ const HEROES = [
     src: '/images/celestial-archer.webp',
     alt: 'Moonlit Feather Archer with golden winged bow and flowing white silk robes upon the sacred summit',
   },
+  {
+    id: 'vermilion-heroine',
+    name: 'Vermilion Lotus Swordswoman',
+    src: '/assets/aistudio/celestial-heroine_f2d2db66.webp',
+    alt: 'Vermilion Lotus Swordswoman with ornate sheathed blade upon lotus altar on the sacred summit',
+  },
 ];
 
 export default function HeroCharacter({
