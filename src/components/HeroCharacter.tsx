@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { RotateCw } from 'lucide-react';
+import { RotateCw, ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface HeroCharacterProps {
   mouseOffset?: { x: number; y: number };
@@ -33,10 +33,10 @@ const HEROES = [
     alt: 'Dragon Crest Monk Warrior standing victorious upon the sacred summit with flowing red sash',
   },
   {
-    id: 'blade-warrior',
-    name: 'Blazing Sun Blade Master',
-    src: '/assets/aistudio/blade-warrior_aca6015b.webp',
-    alt: 'Blazing Sun Blade Master wielding fiery celestial blade standing atop sacred wind rock summit',
+    id: 'celestial-archer',
+    name: 'Moonlit Feather Archer',
+    src: '/assets/aistudio/celestial-archer_b30e342c.webp',
+    alt: 'Moonlit Feather Archer with golden winged bow and flowing white silk robes upon the sacred summit',
   },
 ];
 
@@ -44,7 +44,8 @@ export default function HeroCharacter({
   mouseOffset = { x: 0, y: 0 },
   isParallaxActive = true,
 }: HeroCharacterProps) {
-  const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
+  // Store [currentIndex, direction] where direction is 1 (next / right) or -1 (prev / left)
+  const [[currentHeroIndex, direction], setHeroState] = useState<[number, number]>([0, 1]);
   const [imageError, setImageError] = useState(false);
 
   // Preload all hero assets for instantaneous, seamless switching
@@ -59,25 +60,83 @@ export default function HeroCharacter({
   const parallaxX = isParallaxActive ? mouseOffset.x * 22 : 0;
   const parallaxY = isParallaxActive ? mouseOffset.y * 12 : 0;
 
-  const handleRotateHero = () => {
-    setCurrentHeroIndex((prev) => (prev + 1) % HEROES.length);
-  };
+  const handleNextHero = useCallback(() => {
+    setHeroState(([prev]) => [(prev + 1) % HEROES.length, 1]);
+  }, []);
+
+  const handlePrevHero = useCallback(() => {
+    setHeroState(([prev]) => [(prev - 1 + HEROES.length) % HEROES.length, -1]);
+  }, []);
+
+  // Keyboard navigation: ArrowRight / ArrowLeft to rotate hero
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Don't intercept if focus is inside an input, textarea, or editable element
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === 'INPUT' ||
+          target.tagName === 'TEXTAREA' ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        handleNextHero();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        handlePrevHero();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleNextHero, handlePrevHero]);
 
   const currentHero = HEROES[currentHeroIndex];
 
   return (
     <div className="absolute inset-x-0 bottom-0 flex justify-end items-end pointer-events-none select-none z-20 overflow-hidden h-[60vh] md:h-[84vh] lg:h-[88vh] pr-0 sm:pr-4 md:pr-10 lg:pr-14 xl:pr-16 -mr-2 sm:mr-0">
-      {/* "Change Hero" Button: 20% smaller, positioned just above and to the right of the hero with zero overlap */}
+      {/* "Change Hero" Button: Positioned above and to the right of the hero with thick, aesthetic arrows */}
       <div className="absolute top-[6%] sm:top-[8%] md:top-[10%] lg:top-[11%] right-3 sm:right-6 md:right-8 lg:right-12 z-30 pointer-events-auto">
         <button
-          onClick={handleRotateHero}
-          className="group relative inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full border border-[#d4af37]/80 hover:border-[#ffd700] bg-[#0c0b08]/85 hover:bg-[#16140d]/95 backdrop-blur-md text-[#f5ecd8] hover:text-white font-display text-[9px] sm:text-[10px] md:text-[11px] tracking-[0.16em] uppercase font-semibold shadow-[0_2px_12px_rgba(0,0,0,0.65),0_0_10px_rgba(212,175,55,0.22)] hover:shadow-[0_0_16px_rgba(255,215,0,0.4)] active:scale-95 transition-all duration-300 cursor-pointer select-none whitespace-nowrap"
-          aria-label="Change Hero"
-          title="Switch between Celestial Warriors"
+          onClick={handleNextHero}
+          className="group relative inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 rounded-full border border-[#d4af37]/80 hover:border-[#ffd700] bg-[#0c0b08]/85 hover:bg-[#16140d]/95 backdrop-blur-md text-[#f5ecd8] hover:text-white font-display text-[9px] sm:text-[10px] md:text-[11px] tracking-[0.16em] uppercase font-semibold shadow-[0_2px_12px_rgba(0,0,0,0.65),0_0_10px_rgba(212,175,55,0.22)] hover:shadow-[0_0_16px_rgba(255,215,0,0.4)] active:scale-95 transition-all duration-300 cursor-pointer select-none whitespace-nowrap"
+          aria-label="Change Hero (Press Left or Right arrow key)"
+          title="Change Hero (Click arrows or press ← / → keys)"
         >
-          <RotateCw className="w-2 h-2 sm:w-2.5 sm:h-2.5 text-[#d4af37] group-hover:text-[#ffd700] transition-transform duration-500 group-hover:rotate-180" />
+          <RotateCw className="w-2.5 h-2.5 text-[#d4af37] group-hover:text-[#ffd700] transition-transform duration-500 group-hover:rotate-180 shrink-0" />
           <span className="relative z-10 transition-colors">
             Change Hero
+          </span>
+
+          {/* Thick, aesthetic celestial gold arrow controls */}
+          <span className="inline-flex items-center gap-1 ml-0.5 px-1.5 py-0.5 rounded-full bg-black/60 border border-[#d4af37]/40 shadow-[inset_0_1px_2px_rgba(255,255,255,0.1),0_1px_4px_rgba(0,0,0,0.7)]">
+            <span
+              onClick={(e) => {
+                e.stopPropagation();
+                handlePrevHero();
+              }}
+              className="p-0.5 rounded hover:bg-[#d4af37]/25 text-[#ffd700] hover:text-white transition-all hover:scale-115 active:scale-90 cursor-pointer"
+              title="Previous Hero (← key)"
+            >
+              <ArrowLeft className="w-2.5 h-2.5 sm:w-3 sm:h-3 stroke-[2.75] filter drop-shadow-[0_0_3px_rgba(255,215,0,0.5)]" />
+            </span>
+            <span className="w-[1px] h-2.5 bg-[#d4af37]/35" />
+            <span
+              onClick={(e) => {
+                e.stopPropagation();
+                handleNextHero();
+              }}
+              className="p-0.5 rounded hover:bg-[#d4af37]/25 text-[#ffd700] hover:text-white transition-all hover:scale-115 active:scale-90 cursor-pointer"
+              title="Next Hero (→ key)"
+            >
+              <ArrowRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 stroke-[2.75] filter drop-shadow-[0_0_3px_rgba(255,215,0,0.5)]" />
+            </span>
           </span>
         </button>
       </div>
@@ -92,9 +151,9 @@ export default function HeroCharacter({
         <AnimatePresence mode="popLayout" initial={false}>
           <motion.div
             key={currentHero.id}
-            initial={{ x: 140, opacity: 0 }}
+            initial={{ x: direction * 140, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            exit={{ x: -140, opacity: 0 }}
+            exit={{ x: -direction * 140, opacity: 0 }}
             transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
             className="flex justify-end items-end"
           >
