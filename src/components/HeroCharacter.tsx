@@ -35,7 +35,7 @@ const HEROES = [
   {
     id: 'celestial-archer',
     name: 'Moonlit Feather Archer',
-    src: '/assets/aistudio/celestial-archer_b30e342c.webp',
+    src: '/images/celestial-archer.webp',
     alt: 'Moonlit Feather Archer with golden winged bow and flowing white silk robes upon the sacred summit',
   },
 ];
