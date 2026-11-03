@@ -41,7 +41,7 @@ const HEROES = [
   {
     id: 'vermilion-heroine',
     name: 'Vermilion Lotus Swordswoman',
-    src: '/assets/aistudio/celestial-heroine_f2d2db66.webp',
+    src: '/images/celestial-heroine.webp',
     alt: 'Vermilion Lotus Swordswoman with ornate sheathed blade upon lotus altar on the sacred summit',
   },
 ];
