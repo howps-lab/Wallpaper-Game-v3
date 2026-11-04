@@ -56,6 +56,12 @@ const HEROES = [
     src: '/assets/aistudio/spear-warrior_a339063e.webp',
     alt: 'Silver Frost Spear Maiden in golden armor with red-tasseled spear and billowing white cloak upon lotus altar',
   },
+  {
+    id: 'flame-blade-master',
+    name: 'Blazing Sun Blade Master',
+    src: '/assets/aistudio/blade-warrior_694eeb67.webp',
+    alt: 'Blazing Sun Blade Master with flaming celestial saber and flowing crimson cape atop the summit rock',
+  },
 ];
 
 export default function HeroCharacter({
