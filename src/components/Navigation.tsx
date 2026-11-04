@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Menu, X, Maximize, Minimize } from 'lucide-react';
 
 interface NavigationProps {
   onNavigate: (sectionId: string) => void;
@@ -8,6 +8,34 @@ interface NavigationProps {
 
 export default function Navigation({ onNavigate, onEnterWorld }: NavigationProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(Boolean(document.fullscreenElement));
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    };
+  }, []);
+
+  const toggleFullscreen = async () => {
+    try {
+      if (!document.fullscreenElement) {
+        if (document.documentElement.requestFullscreen) {
+          await document.documentElement.requestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          await document.exitFullscreen();
+        }
+      }
+    } catch {
+      // Graceful handling if fullscreen permission is restricted in container
+    }
+  };
 
   const navLinks = [
     { label: 'The Legend', href: 'legend' },
@@ -61,8 +89,22 @@ export default function Navigation({ onNavigate, onEnterWorld }: NavigationProps
           ))}
         </nav>
 
-        {/* Zone 3: Actions (Primary CTA + Mobile Hamburger) */}
-        <div className="flex items-center gap-3 shrink-0">
+        {/* Zone 3: Actions (Fullscreen Button + Primary CTA + Mobile Hamburger) */}
+        <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+          {/* Full-screen Button: Icon-only, compact and sleek */}
+          <button
+            onClick={toggleFullscreen}
+            className="w-9 h-9 flex items-center justify-center border border-[#d4af37]/60 hover:border-[#f5df9e] bg-[#12110c]/80 hover:bg-[#1f1b12] text-[#f5df9e] hover:text-white transition-all duration-300 rounded-sm cursor-pointer shrink-0 shadow-[0_2px_10px_rgba(0,0,0,0.5)] hover:shadow-[0_0_12px_rgba(212,175,55,0.3)] active:scale-90"
+            aria-label={isFullscreen ? 'Exit Full Screen' : 'Enter Full Screen'}
+            title={isFullscreen ? 'Exit Full Screen' : 'Enter Full Screen'}
+          >
+            {isFullscreen ? (
+              <Minimize className="w-4 h-4 text-[#ffd700] transition-transform duration-200" />
+            ) : (
+              <Maximize className="w-4 h-4 text-[#ffd700] transition-transform duration-200" />
+            )}
+          </button>
+
           <button
             onClick={onEnterWorld}
             className="hidden sm:inline-flex items-center gap-2 px-4 py-2 border border-[#d4af37]/60 hover:border-[#f5df9e] bg-[#12110c]/80 hover:bg-[#1f1b12] text-[#f5df9e] hover:text-white text-xs font-display tracking-[0.2em] uppercase font-semibold transition-all duration-300 rounded-sm cursor-pointer whitespace-nowrap shrink-0 gold-subtle-glow"
@@ -96,10 +138,30 @@ export default function Navigation({ onNavigate, onEnterWorld }: NavigationProps
 
           <button
             onClick={() => {
+              toggleFullscreen();
+              setMobileMenuOpen(false);
+            }}
+            className="w-full py-2.5 border border-[#d4af37]/60 bg-[#12110c]/80 text-[#f5df9e] text-xs font-display tracking-[0.2em] uppercase font-semibold flex items-center justify-center gap-2"
+          >
+            {isFullscreen ? (
+              <>
+                <Minimize className="w-4 h-4 text-[#ffd700]" />
+                <span>EXIT FULLSCREEN</span>
+              </>
+            ) : (
+              <>
+                <Maximize className="w-4 h-4 text-[#ffd700]" />
+                <span>FULLSCREEN MODE</span>
+              </>
+            )}
+          </button>
+
+          <button
+            onClick={() => {
               setMobileMenuOpen(false);
               onEnterWorld();
             }}
-            className="w-full mt-2 py-3 border border-[#d4af37] bg-[#1a1710] text-[#f5df9e] text-xs font-display tracking-[0.25em] uppercase font-bold text-center"
+            className="w-full mt-1 py-3 border border-[#d4af37] bg-[#1a1710] text-[#f5df9e] text-xs font-display tracking-[0.25em] uppercase font-bold text-center"
           >
             ENTER THE WORLD
           </button>
