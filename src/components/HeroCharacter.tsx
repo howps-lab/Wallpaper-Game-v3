@@ -44,6 +44,18 @@ const HEROES = [
     src: '/images/celestial-heroine.webp',
     alt: 'Vermilion Lotus Swordswoman with ornate sheathed blade upon lotus altar on the sacred summit',
   },
+  {
+    id: 'guandao-general',
+    name: 'Dragon Glaive Warlord',
+    src: '/assets/aistudio/guandao-warrior_36e30cd0.webp',
+    alt: 'Dragon Glaive Warlord with celestial guandao polearm and flowing crimson cape atop the mountain peak',
+  },
+  {
+    id: 'spear-heroine',
+    name: 'Silver Frost Spear Maiden',
+    src: '/assets/aistudio/spear-warrior_a339063e.webp',
+    alt: 'Silver Frost Spear Maiden in golden armor with red-tasseled spear and billowing white cloak upon lotus altar',
+  },
 ];
 
 export default function HeroCharacter({
