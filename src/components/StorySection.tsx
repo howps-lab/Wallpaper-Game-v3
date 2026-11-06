@@ -13,6 +13,24 @@ export default function StorySection() {
       />
 
       <div className="relative max-w-4xl mx-auto">
+        {/* Play The Game Button: Centered in space above The Genesis Chronicle */}
+        <div className="flex justify-center items-center mb-12 sm:mb-16">
+          <a
+            href="https://howps-lab.github.io/ai-lab/game/preview.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative inline-flex items-center justify-center transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] cursor-pointer filter drop-shadow-[0_4px_20px_rgba(0,0,0,0.85)] hover:drop-shadow-[0_0_25px_rgba(200,45,30,0.65)]"
+            aria-label="Play The Game"
+            title="Launch Game Preview in a new window"
+          >
+            <img
+              src="/assets/aistudio/play_the_game_5fd713bf.png"
+              alt="Play The Game"
+              className="w-[280px] sm:w-[340px] md:w-[380px] lg:w-[420px] max-w-[92vw] h-auto object-contain select-none"
+            />
+          </a>
+        </div>
+
         {/* Editorial Chapter Header */}
         <div className="flex flex-col items-center text-center mb-14">
           <div className="flex items-center gap-3 mb-4">

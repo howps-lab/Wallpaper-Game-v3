@@ -105,12 +105,14 @@ export default function Navigation({ onNavigate, onEnterWorld }: NavigationProps
             )}
           </button>
 
-          <button
-            onClick={onEnterWorld}
-            className="hidden sm:inline-flex items-center gap-2 px-4 py-2 border border-[#d4af37]/60 hover:border-[#f5df9e] bg-[#12110c]/80 hover:bg-[#1f1b12] text-[#f5df9e] hover:text-white text-xs font-display tracking-[0.2em] uppercase font-semibold transition-all duration-300 rounded-sm cursor-pointer whitespace-nowrap shrink-0 gold-subtle-glow"
+          <a
+            href="https://howps-lab.github.io/ai-lab/game/preview.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline-flex items-center gap-2 px-4 py-2 border border-[#d4af37]/60 hover:border-[#f5df9e] bg-[#12110c]/80 hover:bg-[#1f1b12] text-[#f5df9e] hover:text-white text-xs font-display tracking-[0.2em] uppercase font-semibold transition-all duration-300 rounded-sm cursor-pointer whitespace-nowrap shrink-0 gold-subtle-glow shadow-[0_0_15px_rgba(212,175,55,0.2)] hover:shadow-[0_0_20px_rgba(255,215,0,0.35)]"
           >
-            <span>ENTER THE WORLD</span>
-          </button>
+            <span>PLAY THE GAME</span>
+          </a>
 
           {/* Mobile Menu Button */}
           <button
@@ -156,15 +158,15 @@ export default function Navigation({ onNavigate, onEnterWorld }: NavigationProps
             )}
           </button>
 
-          <button
-            onClick={() => {
-              setMobileMenuOpen(false);
-              onEnterWorld();
-            }}
-            className="w-full mt-1 py-3 border border-[#d4af37] bg-[#1a1710] text-[#f5df9e] text-xs font-display tracking-[0.25em] uppercase font-bold text-center"
+          <a
+            href="https://howps-lab.github.io/ai-lab/game/preview.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMobileMenuOpen(false)}
+            className="w-full mt-1 py-3 border border-[#d4af37] bg-[#1a1710] text-[#f5df9e] text-xs font-display tracking-[0.25em] uppercase font-bold text-center block shadow-[0_0_15px_rgba(212,175,55,0.2)]"
           >
-            ENTER THE WORLD
-          </button>
+            PLAY THE GAME
+          </a>
         </div>
       )}
     </header>
